@@ -1093,14 +1093,14 @@ void pthreadpool_parallelize_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range; i++) {
 			task(argument, i);
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		thread_function_t parallelize_1d = &thread_parallelize_1d;
@@ -1139,14 +1139,14 @@ void pthreadpool_parallelize_1d_with_uarch(
 
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range; i++) {
 			task(argument, uarch_index, i);
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const struct pthreadpool_1d_with_uarch_params params = {
@@ -1179,14 +1179,14 @@ void pthreadpool_parallelize_1d_tile_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range; i += tile) {
 			task(argument, i, min(range - i, tile));
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range = divide_round_up(range, tile);
@@ -1220,8 +1220,8 @@ void pthreadpool_parallelize_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1229,7 +1229,7 @@ void pthreadpool_parallelize_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t range = range_i * range_j;
@@ -1263,8 +1263,8 @@ void pthreadpool_parallelize_2d_tile_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j += tile_j) {
@@ -1272,7 +1272,7 @@ void pthreadpool_parallelize_2d_tile_1d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_j = divide_round_up(range_j, tile_j);
@@ -1310,8 +1310,8 @@ void pthreadpool_parallelize_2d_tile_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+		//	//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i += tile_i) {
 			for (size_t j = 0; j < range_j; j += tile_j) {
@@ -1319,7 +1319,7 @@ void pthreadpool_parallelize_2d_tile_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_i = divide_round_up(range_i, tile_i);
@@ -1371,8 +1371,8 @@ void pthreadpool_parallelize_2d_tile_2d_with_uarch(
 
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i += tile_i) {
 			for (size_t j = 0; j < range_j; j += tile_j) {
@@ -1380,7 +1380,7 @@ void pthreadpool_parallelize_2d_tile_2d_with_uarch(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_i = divide_round_up(range_i, tile_i);
@@ -1422,8 +1422,8 @@ void pthreadpool_parallelize_3d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1433,7 +1433,7 @@ void pthreadpool_parallelize_3d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t range = range_i * range_j * range_k;
@@ -1469,8 +1469,8 @@ void pthreadpool_parallelize_3d_tile_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1480,7 +1480,7 @@ void pthreadpool_parallelize_3d_tile_1d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_k = divide_round_up(range_k, tile_k);
@@ -1520,8 +1520,8 @@ void pthreadpool_parallelize_3d_tile_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j += tile_j) {
@@ -1531,7 +1531,7 @@ void pthreadpool_parallelize_3d_tile_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_j = divide_round_up(range_j, tile_j);
@@ -1585,8 +1585,8 @@ void pthreadpool_parallelize_3d_tile_2d_with_uarch(
 
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j += tile_j) {
@@ -1596,7 +1596,7 @@ void pthreadpool_parallelize_3d_tile_2d_with_uarch(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_j = divide_round_up(range_j, tile_j);
@@ -1640,8 +1640,8 @@ void pthreadpool_parallelize_4d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1653,7 +1653,7 @@ void pthreadpool_parallelize_4d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t range_kl = range_k * range_l;
@@ -1693,8 +1693,8 @@ void pthreadpool_parallelize_4d_tile_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1706,7 +1706,7 @@ void pthreadpool_parallelize_4d_tile_1d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_l = divide_round_up(range_l, tile_l);
@@ -1750,8 +1750,8 @@ void pthreadpool_parallelize_4d_tile_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1764,7 +1764,7 @@ void pthreadpool_parallelize_4d_tile_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_l = divide_round_up(range_l, tile_l);
@@ -1820,8 +1820,8 @@ void pthreadpool_parallelize_4d_tile_2d_with_uarch(
 
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1834,7 +1834,7 @@ void pthreadpool_parallelize_4d_tile_2d_with_uarch(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_l = divide_round_up(range_l, tile_l);
@@ -1880,8 +1880,8 @@ void pthreadpool_parallelize_5d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1895,7 +1895,7 @@ void pthreadpool_parallelize_5d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t range_lm = range_l * range_m;
@@ -1937,8 +1937,8 @@ void pthreadpool_parallelize_5d_tile_1d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			////saved_fpu_state = get_fpu_state();
+			////disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -1952,7 +1952,7 @@ void pthreadpool_parallelize_5d_tile_1d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			////set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_m = divide_round_up(range_m, tile_m);
@@ -1998,8 +1998,8 @@ void pthreadpool_parallelize_5d_tile_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -2014,7 +2014,7 @@ void pthreadpool_parallelize_5d_tile_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t tile_range_m = divide_round_up(range_m, tile_m);
@@ -2062,8 +2062,8 @@ void pthreadpool_parallelize_6d_tile_2d(
 		/* No thread pool used: execute task sequentially on the calling thread */
 		struct fpu_state saved_fpu_state = { 0 };
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			saved_fpu_state = get_fpu_state();
-			disable_fpu_denormals();
+			//saved_fpu_state = get_fpu_state();
+			//disable_fpu_denormals();
 		}
 		for (size_t i = 0; i < range_i; i++) {
 			for (size_t j = 0; j < range_j; j++) {
@@ -2080,7 +2080,7 @@ void pthreadpool_parallelize_6d_tile_2d(
 			}
 		}
 		if (flags & PTHREADPOOL_FLAG_DISABLE_DENORMALS) {
-			set_fpu_state(saved_fpu_state);
+			//set_fpu_state(saved_fpu_state);
 		}
 	} else {
 		const size_t range_kl = range_k * range_l;

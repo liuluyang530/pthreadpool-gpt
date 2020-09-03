@@ -217,7 +217,7 @@
 	static inline bool pthreadpool_try_decrement_relaxed_size_t(
 		pthreadpool_atomic_size_t* value)
 	{
-		#if defined(__clang__) && (defined(__arm__) || defined(__aarch64__))
+		#if defined(__clang__) && (defined(__arm__) || defined(__aarch64__) || defined(__gptx__))
 			size_t actual_value;
 			do {
 				actual_value = __builtin_arm_ldrex((const volatile size_t*) value);
